@@ -49,7 +49,6 @@ class App extends Component {
                 selected={this.state.startDate}
                 showMonthDropdown
                 showYearDropdown
-                isClearable
                 onChange={this.handleStartChange}
               />
               <DatePicker
@@ -57,7 +56,6 @@ class App extends Component {
                 selected={this.state.endDate}
                 showMonthDropdown
                 showYearDropdown
-                isClearable
                 onChange={this.handleEndChange}
               />
               <div className="search-right">
