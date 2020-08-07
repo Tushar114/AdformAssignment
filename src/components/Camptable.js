@@ -4,6 +4,7 @@ const CampData = require('../data.json');
 
 const Camptable = ({ userData, searchText, isDateChanged }) => {
   let userArr = [];
+
   if (!isDateChanged) {
     for (let i = 0; i < userData.length; i++) {
       for (let j = 0; j < CampData.data.length; j++) {
@@ -19,7 +20,7 @@ const Camptable = ({ userData, searchText, isDateChanged }) => {
   if (searchText) {
     userArr = [
       ...userArr.filter((user) => {
-        return user.name.toLowerCase().includes(searchText);
+        return user.campName.includes(searchText);
       }),
     ];
   }
@@ -39,7 +40,7 @@ const Camptable = ({ userData, searchText, isDateChanged }) => {
         </thead>
 
         {userArr.map((user, i) => {
-          return <UserList key={user.id} {...user} no={i + 1} />;
+          return <UserList key={user.id} {...user} />;
         })}
       </table>
     </div>

@@ -1,10 +1,10 @@
 import React from 'react';
 
-const UserList = ({ no, name, startDate, endDate, Budget }) => {
+const UserList = ({ campName, name, startDate, endDate, Budget }) => {
   return (
     <tbody>
       <tr>
-        <th scope="row">{`Campaign ${no}`}</th>
+        <th scope="row">{campName}</th>
         <td>{name ? name : 'Unknown User'}</td>
         <td>{startDate}</td>
         <td>{endDate}</td>

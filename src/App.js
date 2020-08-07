@@ -1,94 +1,99 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import DatePicker from 'react-datepicker';
-import { connect } from 'react-redux';
-import { fetch, dateFilter } from './actions';
-import Loader from './components/Loader';
+import { useSelector, useDispatch } from 'react-redux';
+import { dateFilter } from './actions';
+import { fetchUser } from './middleware/Middleware';
+import Loader from './components/Loader/Loader';
 import Camptable from './components/Camptable';
+import { SelectUserData, SelectIsLoading } from './selector';
 
-class App extends Component {
-  state = {
-    startDate: '',
-    endDate: '',
-    searchText: '',
-    isDateChanged: false,
-  };
+const jsondata = require('./data.json');
 
-  componentDidMount() {
-    this.props.fetch();
-  }
-  handleStartChange = (date) => {
-    this.setState({
-      startDate: date,
-    });
-  };
-  handleEndChange = (date) => {
-    this.setState(
-      {
-        endDate: date,
-        isDateChanged: true,
-      },
-      () => {
-        this.props.dateFilter(this.state.startDate, this.state.endDate);
-      }
+function App() {
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
+  const [searchText, setSearchText] = useState('');
+  const [isDateChanged, setIsDateChanged] = useState(false);
+  const isLoading = useSelector((state) => SelectIsLoading(state));
+  const userData = useSelector((state) => SelectUserData(state));
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [startDate === null]);
+
+  useEffect(() => {
+    dispatch(
+      dateFilter({
+        startDate: startDate,
+        endDate: endDate,
+        jsondata,
+      })
     );
+  }, [endDate]);
+  const handleStartChange = (date) => {
+    setStartDate(date);
   };
-  handleSearch = (e) => {
-    this.setState({ searchText: e.target.value });
+  const handleEndChange = (date) => {
+    setEndDate(date);
+    if (date === null) {
+      setIsDateChanged(false);
+    } else {
+      setIsDateChanged(true);
+    }
   };
-  render() {
-    return (
-      <div className="container">
-        {this.props.isLoading ? (
-          <Loader />
-        ) : (
-          <React.Fragment>
-            <div className="mt-4">
+  const handleSearch = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  return (
+    <div className="container">
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <React.Fragment>
+          <div className="mt-4">
+            <div className="flex-container">
               <DatePicker
                 placeholderText="Start Date"
-                selected={this.state.startDate}
+                selected={startDate}
                 showMonthDropdown
                 showYearDropdown
-                onChange={this.handleStartChange}
+                onChange={handleStartChange}
               />
               <DatePicker
                 placeholderText="End Date"
-                selected={this.state.endDate}
+                selected={endDate}
                 showMonthDropdown
                 showYearDropdown
-                onChange={this.handleEndChange}
+                onChange={handleEndChange}
               />
               <div className="search-right">
                 <input
                   type="text"
-                  value={this.state.searchText}
+                  value={searchText}
                   placeholder="Search by name"
-                  onChange={this.handleSearch}
+                  onChange={handleSearch}
                 ></input>
               </div>
-              <div className="mt-4">
-                {this.props.userData && (
-                  <Camptable
-                    userData={this.props.userData}
-                    searchText={this.state.searchText}
-                    startDate={this.state.startDate}
-                    endDate={this.state.endDate}
-                    isDateChanged={this.state.isDateChanged}
-                  />
-                )}
-              </div>
             </div>
-          </React.Fragment>
-        )}
-      </div>
-    );
-  }
+            <div className="mt-4">
+              {userData && (
+                <Camptable
+                  userData={userData}
+                  searchText={searchText}
+                  startDate={startDate}
+                  endDate={endDate}
+                  isDateChanged={isDateChanged}
+                />
+              )}
+            </div>
+          </div>
+        </React.Fragment>
+      )}
+    </div>
+  );
 }
 
-const mapStateToProps = (state) => {
-  return {
-    isLoading: state.campaign.loading,
-    userData: state.campaign.data,
-  };
-};
-export default connect(mapStateToProps, { fetch, dateFilter })(App);
+export default App;

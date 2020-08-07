@@ -13,7 +13,7 @@ export default function campaign(state = initialState, action) {
     case actionTypes.FETCH_SUCCESS:
       return {
         ...state,
-        data: action.data,
+        data: action.payload,
         loading: false,
       };
     case actionTypes.FETCH_FAIL:
@@ -26,8 +26,8 @@ export default function campaign(state = initialState, action) {
         ...state,
         data: action.payload.jsondata.data.filter((el) => {
           return (
-            action.payload.start <= new Date(el.startDate) &&
-            action.payload.end >= new Date(el.endDate)
+            action.payload.startDate <= new Date(el.startDate) &&
+            action.payload.endDate >= new Date(el.endDate)
           );
         }),
         loading: false,
