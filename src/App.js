@@ -3,8 +3,8 @@ import './App.css';
 import DatePicker from 'react-datepicker';
 import { connect } from 'react-redux';
 import { fetch, dateFilter } from './actions';
-import Loader from './Loader';
-import Camptable from './Camptable';
+import Loader from './components/Loader';
+import Camptable from './components/Camptable';
 
 class App extends Component {
   state = {

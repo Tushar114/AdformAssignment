@@ -1,6 +1,6 @@
 import React from 'react';
 import UserList from './UserList';
-const CampData = require('./data.json');
+const CampData = require('../data.json');
 
 const Camptable = ({ userData, searchText, isDateChanged }) => {
   let userArr = [];
