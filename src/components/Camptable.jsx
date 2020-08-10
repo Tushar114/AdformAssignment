@@ -1,15 +1,15 @@
 import React from 'react';
-import UserList from './UserList';
-const CampData = require('../data.json');
+import UserList from './UserList.jsx';
+const CampaignData = require('../data.json');
 
 const Camptable = ({ userData, searchText, isDateChanged }) => {
   let userArr = [];
 
   if (!isDateChanged) {
     for (let i = 0; i < userData.length; i++) {
-      for (let j = 0; j < CampData.data.length; j++) {
-        if (CampData.data[j].userId === userData[i].id) {
-          userArr.push(CampData.data[j]);
+      for (let j = 0; j < CampaignData.data.length; j++) {
+        if (CampaignData.data[j].userId === userData[i].id) {
+          userArr.push(CampaignData.data[j]);
         }
       }
     }

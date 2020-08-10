@@ -4,8 +4,8 @@ import DatePicker from 'react-datepicker';
 import { useSelector, useDispatch } from 'react-redux';
 import { dateFilter } from './actions';
 import { fetchUser } from './middleware/Middleware';
-import Loader from './components/Loader/Loader';
-import Camptable from './components/Camptable';
+import Loader from './components/Loader/Loader.jsx';
+import Camptable from './components/Camptable.jsx';
 import { SelectUserData, SelectIsLoading } from './selector';
 
 const jsondata = require('./data.json');
@@ -32,10 +32,10 @@ function App() {
       })
     );
   }, [endDate]);
-  const handleStartChange = (date) => {
+  const handleStartDateChange = (date) => {
     setStartDate(date);
   };
-  const handleEndChange = (date) => {
+  const handleEndDateChange = (date) => {
     setEndDate(date);
     if (date === null) {
       setIsDateChanged(false);
@@ -60,14 +60,14 @@ function App() {
                 selected={startDate}
                 showMonthDropdown
                 showYearDropdown
-                onChange={handleStartChange}
+                onChange={handleStartDateChange}
               />
               <DatePicker
                 placeholderText="End Date"
                 selected={endDate}
                 showMonthDropdown
                 showYearDropdown
-                onChange={handleEndChange}
+                onChange={handleEndDateChange}
               />
               <div className="search-right">
                 <input
@@ -83,8 +83,6 @@ function App() {
                 <Camptable
                   userData={userData}
                   searchText={searchText}
-                  startDate={startDate}
-                  endDate={endDate}
                   isDateChanged={isDateChanged}
                 />
               )}

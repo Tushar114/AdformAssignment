@@ -1,18 +1,18 @@
 import { API_URL } from '../constant';
-import { fetchStart, fetchSuccess, fetchFail } from '../actions';
+import { fetchUserStart, fetchUserSuccess, fetchUserFail } from '../actions';
 import axios from 'axios';
 
 export const fetchUser = () => {
   return (dispatch) => {
-    dispatch(fetchStart());
+    dispatch(fetchUserStart());
     let url = API_URL;
     axios
       .get(url)
       .then((res) => {
-        dispatch(fetchSuccess(res.data));
+        dispatch(fetchUserSuccess(res.data));
       })
       .catch((err) => {
-        dispatch(fetchFail(err));
+        dispatch(fetchUserFail(err));
       });
   };
 };
