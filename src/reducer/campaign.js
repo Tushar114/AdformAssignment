@@ -4,7 +4,6 @@ const initialState = {
   data: null,
   error: null,
   loading: false,
-  campData: null,
 };
 export default function campaign(state = initialState, action) {
   switch (action.type) {
