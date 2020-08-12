@@ -1,4 +1,5 @@
 import * as actionTypes from '../actions/actionType';
+import moment from 'moment';
 
 const initialState = {
   data: null,
@@ -25,8 +26,10 @@ export default function campaign(state = initialState, action) {
         ...state,
         data: action.payload.jsondata.data.filter((el) => {
           return (
-            action.payload.startDate <= new Date(el.startDate) &&
-            action.payload.endDate >= new Date(el.endDate)
+            moment(action.payload.startDate).isSameOrBefore(
+              new Date(el.startDate)
+            ) &&
+            moment(action.payload.endDate).isSameOrAfter(new Date(el.endDate))
           );
         }),
         loading: false,

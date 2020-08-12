@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import { fetchUser } from '../middleware/Middleware';
 import { dateFilter } from '../actions';
