@@ -5,3 +5,7 @@ export const SelectUserData = (state) => {
 export const SelectIsLoading = (state) => {
   return state.campaign.isLoading;
 };
+
+export const SelectError = (state) => {
+  return state.campaign.error;
+};
