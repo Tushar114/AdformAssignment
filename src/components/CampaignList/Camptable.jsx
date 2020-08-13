@@ -1,7 +1,7 @@
 import React from 'react';
 import UserList from './UserList.jsx';
 import { useSelector } from 'react-redux';
-import { getCampUsers } from '../selector';
+import { getCampUsers } from '../../redux/selector/selector';
 
 const Camptable = ({ searchText }) => {
   let userArr = useSelector((state) => getCampUsers(state));

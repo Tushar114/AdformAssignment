@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-const CampaignData = require('./data.json');
+const CampaignData = require('../../data.json');
 
 export const SelectUserData = (state) => {
   return state.campaign.data;

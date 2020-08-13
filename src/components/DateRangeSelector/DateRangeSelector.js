@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
-import { fetchUser } from '../middleware/Middleware';
-import { dateFilter, dateChanged } from '../actions';
-const jsondata = require('../data.json');
+import { fetchUser } from '../../redux/thunks/Middleware';
+import { dateFilter, dateChanged } from '../../redux/actions';
+const jsondata = require('../../data.json');
 
-function DateSelector() {
+function DateRangeSelector() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const dispatch = useDispatch();
@@ -58,4 +58,4 @@ function DateSelector() {
   );
 }
 
-export default DateSelector;
+export default DateRangeSelector;

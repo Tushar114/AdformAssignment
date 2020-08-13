@@ -1,4 +1,4 @@
-import { API_URL } from '../constant';
+import { API_URL } from '../../constants';
 import { fetchUserStart, fetchUserSuccess, fetchUserFail } from '../actions';
 import axios from 'axios';
 
