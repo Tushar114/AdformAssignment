@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import { fetchUser } from '../middleware/Middleware';
-import { dateFilter } from '../actions';
+import { dateFilter, dateChanged } from '../actions';
 const jsondata = require('../data.json');
 
-function DateSelector({ setIsDateChanged }) {
+function DateSelector() {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const dispatch = useDispatch();
@@ -31,9 +31,11 @@ function DateSelector({ setIsDateChanged }) {
   const handleEndDateChange = (date) => {
     setEndDate(date);
     if (date === null) {
-      setIsDateChanged(false);
+      dispatch(dateChanged(false));
+      //setIsDateChanged(false);
     } else {
-      setIsDateChanged(true);
+      dispatch(dateChanged(true));
+      //setIsDateChanged(true);
     }
   };
   return (

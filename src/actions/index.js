@@ -7,3 +7,4 @@ export const fetchUserFail = createAction('FETCH_FAIL');
 export const fetchUserSuccess = createAction('FETCH_SUCCESS');
 
 export const dateFilter = createAction('DATE_FILTER');
+export const dateChanged = createAction('DATE_CHANGED');

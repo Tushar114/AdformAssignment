@@ -5,6 +5,7 @@ const initialState = {
   data: null,
   error: null,
   loading: false,
+  isDateChanged: false,
 };
 export default function campaign(state = initialState, action) {
   switch (action.type) {
@@ -33,6 +34,11 @@ export default function campaign(state = initialState, action) {
           );
         }),
         loading: false,
+      };
+    case actionTypes.DATE_CHANGED:
+      return {
+        ...state,
+        isDateChanged: action.payload,
       };
     default:
       return state;

@@ -11,7 +11,7 @@ import Error from './components/Error';
 
 function App() {
   const [searchText, setSearchText] = useState('');
-  const [isDateChanged, setIsDateChanged] = useState(false);
+  //const [isDateChanged, setIsDateChanged] = useState(false);
   const isLoading = useSelector((state) => SelectIsLoading(state));
   const userData = useSelector((state) => SelectUserData(state));
   const error = useSelector((state) => SelectError(state));
@@ -38,7 +38,7 @@ function App() {
             ) : (
               <>
                 <div className="flex-container">
-                  <DateSelector setIsDateChanged={setIsDateChanged} />
+                  <DateSelector />
                   <SearchCamp
                     handleSearch={(e) => handleSearch(e)}
                     searchText={searchText}
@@ -48,7 +48,7 @@ function App() {
                   {userData && (
                     <Camptable
                       searchText={searchText}
-                      isDateChanged={isDateChanged}
+                      //isDateChanged={isDateChanged}
                     />
                   )}
                 </div>

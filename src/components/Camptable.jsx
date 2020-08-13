@@ -1,26 +1,10 @@
 import React from 'react';
 import UserList from './UserList.jsx';
 import { useSelector } from 'react-redux';
-import { SelectUserData } from '../selector';
+import { getCampUsers } from '../selector';
 
-const CampaignData = require('../data.json');
-
-const Camptable = ({ searchText, isDateChanged }) => {
-  const userData = useSelector((state) => SelectUserData(state));
-
-  let userArr = [];
-
-  if (!isDateChanged) {
-    for (let i = 0; i < userData.length; i++) {
-      for (let j = 0; j < CampaignData.data.length; j++) {
-        if (CampaignData.data[j].userId === userData[i].id) {
-          userArr.push(CampaignData.data[j]);
-        }
-      }
-    }
-  } else {
-    userArr = [...userData];
-  }
+const Camptable = ({ searchText }) => {
+  let userArr = useSelector((state) => getCampUsers(state));
 
   if (searchText) {
     userArr = [

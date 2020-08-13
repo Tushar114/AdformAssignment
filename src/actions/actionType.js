@@ -4,3 +4,4 @@ export const FETCH_FAIL = 'FETCH_FAIL';
 export const DATE_FILTER = 'DATE_FILTER';
 export const FILTER_DATA_START = 'FILTER_DATA_START';
 export const FILTER_DATA_SUCCESS = 'FILTER_DATA_SUCCESS';
+export const DATE_CHANGED = 'DATE_CHANGED';
