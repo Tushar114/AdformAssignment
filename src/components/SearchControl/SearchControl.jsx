@@ -1,5 +1,5 @@
 import React from 'react';
-
+import './SearchControl.css';
 function SearchControl({ handleSearch, searchText }) {
   return (
     <div className="search-right">

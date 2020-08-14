@@ -9,8 +9,8 @@ import {
   SelectIsLoading,
   SelectError,
 } from './redux/selector/selector';
-import DateRangeSelector from './components/DateRangeSelector/DateRangeSelector';
-import SearchControl from './components/SearchControl/SearchControl';
+import DateRangeSelector from './components/DateRangeSelector/DateRangeSelector.jsx';
+import SearchControl from './components/SearchControl/SearchControl.jsx';
 import Error from './components/Error/Error';
 
 function App() {
