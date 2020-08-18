@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import { fetchUser } from '../../redux/thunks/Middleware';
 import { dateFilter, dateChanged } from '../../redux/actions';
 const jsondata = require('../../data.json');
 
-function DateRangeSelector() {
+function DateRangeSelector(props) {
+  const { showMonthDropdown, showYearDropdown } = props;
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const dispatch = useDispatch();
@@ -43,19 +45,25 @@ function DateRangeSelector() {
       <DatePicker
         placeholderText="Start Date"
         selected={startDate}
-        showMonthDropdown
-        showYearDropdown
+        showMonthDropdown={showMonthDropdown}
+        showYearDropdown={showYearDropdown}
         onChange={handleStartDateChange}
       />
       <DatePicker
         placeholderText="End Date"
         selected={endDate}
-        showMonthDropdown
-        showYearDropdown
+        showMonthDropdown={showMonthDropdown}
+        showYearDropdown={showYearDropdown}
         onChange={handleEndDateChange}
       />
     </>
   );
 }
+const defaultProps = {
+  showMonthDropdown: true,
+  showYearDropdown: true,
+};
+
+DateRangeSelector.defaultProps = defaultProps;
 
 export default DateRangeSelector;
