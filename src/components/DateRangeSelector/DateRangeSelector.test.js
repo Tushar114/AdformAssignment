@@ -1,12 +1,12 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import { Provider } from 'react-redux';
-import store from '../redux/store';
+import store from '../../redux/store';
 import renderer from 'react-test-renderer';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
-import DateRangeSelector from '../components/DateRangeSelector/DateRangeSelector';
-import { ReduxProvider } from '../utility';
+import DateRangeSelector from './DateRangeSelector';
+import { ReduxProvider } from '../../utility';
 
 describe('DatePicker Test', () => {
   it('should render <DateRangeSelector/> component', () => {
@@ -27,7 +27,6 @@ describe('DatePicker Test', () => {
         </Provider>
       ),
       dateInput = DateComponent.find("input[type='text']");
-    console.log(dateInput);
     dateInput.at(0).simulate('click');
     expect(DateComponent.find('.react-datepicker').first()).toHaveLength(1);
   });
@@ -59,9 +58,7 @@ describe('DatePicker Test', () => {
         <Provider store={store}>
           <DateRangeSelector {...props} />
         </Provider>
-      )
-        .find("input[type='text']")
-        .at(0);
+      ).find("input[type='text']");
     DateInputComponent.at(0).simulate('click');
     expect(
       DateInputComponent.first().hasClass(

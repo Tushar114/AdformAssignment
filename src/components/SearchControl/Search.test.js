@@ -1,11 +1,16 @@
 import React from 'react';
-import App from '../App.jsx';
+import App from '../../App.jsx';
 import { shallow, mount } from 'enzyme';
 import { Provider } from 'react-redux';
-import store from '../redux/store';
-import SearchControl from '../components/SearchControl/SearchControl';
+import store from '../../redux/store';
+import renderer from 'react-test-renderer';
+import SearchControl from './SearchControl';
 
 describe('Search', () => {
+  it('should match the snapshot', () => {
+    const component = renderer.create(<SearchControl />).toJSON();
+    expect(component).toMatchSnapshot();
+  });
   it('should render search component', () => {
     const component = shallow(<SearchControl />);
     const wrapper = component.find('.search-right');

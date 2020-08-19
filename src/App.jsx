@@ -23,7 +23,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchUser());
-  }, []);
+  }, [dispatch]);
 
   const handleSearch = (e) => {
     setSearchText(e.target.value);

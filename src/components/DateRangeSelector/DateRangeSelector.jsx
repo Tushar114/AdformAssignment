@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import DatePicker from 'react-datepicker';
 import { fetchUser } from '../../redux/thunks/Middleware';
@@ -14,7 +13,7 @@ function DateRangeSelector(props) {
 
   useEffect(() => {
     dispatch(fetchUser());
-  }, [startDate === null]);
+  }, [startDate === null]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     dispatch(
@@ -24,7 +23,7 @@ function DateRangeSelector(props) {
         jsondata,
       })
     );
-  }, [endDate]);
+  }, [endDate]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleStartDateChange = (date) => {
     setStartDate(date);
